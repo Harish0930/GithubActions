@@ -1,0 +1,12 @@
+name: validating wf with checkout
+
+on: [workflow_dispatch]
+
+jobs:
+    without-checkout:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout the repo
+              uses: actions/checkout@v6
+            - name: display the devops.txt file content
+              run: cat devops.txt #devops.txt file doesn't exist in the runner but it exists in the repository
