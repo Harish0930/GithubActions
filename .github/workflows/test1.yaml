@@ -1,1 +1,10 @@
+name: This is testing workflow
 
+on: push
+
+jobs:
+    testing-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Display Hello World! message
+              run: echo "Hello World! from Github actions on Ubuntu-Latest"
