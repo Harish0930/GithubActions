@@ -1,0 +1,10 @@
+name: running shell script
+
+on: [workflow_dispatch]
+
+jobs:
+    shell_script:
+        runs-on: ubuntu-latest
+        steps:
+            - name: executing the shell script
+              run: bash ./demo.sh
