@@ -1,0 +1,10 @@
+name: validating wf without checkout
+
+on: [push]
+
+jobs:
+    without-checkout:
+        runs-on: ubuntu-latest
+        steps:
+            - name: display the devops.txt file content
+              run: cat devops.txt #devops.txt file doesn't exist in the runner
