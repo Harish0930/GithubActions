@@ -1,0 +1,16 @@
+name: File operations action
+
+on: push
+
+jobs:
+    files:
+        runs-on: ubuntu-latest
+        steps:
+            - name: create a file and add some data
+              run: echo "This is testing file" > devops.txt
+            - name: display the file content
+              run: cat devops.txt
+            - name: list out all the file
+              run: ls -lrtha
+            - name: Present working directory
+              run: pwd
