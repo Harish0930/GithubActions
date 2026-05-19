@@ -1,0 +1,131 @@
+# 🔄 Terraform Quick Guide – Refresh, Drift, Import & Debugging
+
+## ⚠️ Terraform Refresh (Deprecated)
+
+**terraform refresh** was used to sync the state file with real infrastructure without making changes to resources.
+
+### Key Points:
+- Updates `terraform.tfstate` based on real infrastructure
+- Does NOT modify `.tf` files
+- Does NOT change cloud resources
+
+> In simple terms: It overwrote the state file with actual cloud state.
+
+### ❌ Status:
+- Deprecated from Terraform 1.0+
+
+---
+
+## 🔍 What is Drift?
+
+**Drift** occurs when infrastructure is modified outside Terraform, causing mismatch between:
+- Terraform state file
+- Actual cloud infrastructure
+
+### 🚨 Common Drift Scenarios:
+- EC2 instance stopped manually
+- Security Group rules changed
+- Tags added/removed
+- Instance type modified via console
+
+---
+
+## 🔎 Drift Detection
+
+Drift is automatically detected during:
+
+```bash
+terraform plan
+terraform apply
+```
+
+### Manual Drift Detection:
+```bash
+terraform plan -refresh-only
+```
+
+### Behavior:
+- Detects differences between state and real infra
+- Does NOT change infra (only shows drift)
+
+> 🎯 **Interview Tip:** Drift detection is built into `plan` and `apply`.
+
+---
+
+## ☁️ Note:
+Drift detection is also available in AWS CloudFormation.
+
+---
+
+## 🔄 Terraform Import
+
+Used to bring existing resources under Terraform management.
+
+### Key Points:
+- Imports resource into `terraform.tfstate`
+- Does NOT create resource
+- After import → `terraform plan` works normally
+
+### Example Command:
+```bash
+terraform plan -generate-config-out=ec2.tf
+```
+
+> ⚡ **Best Practice:** Always define resource in `.tf` before import.
+
+---
+
+## 🐞 Terraform Debugging Options
+
+### 🔹 TF_LOG Environment Variable
+
+Enables detailed logs for troubleshooting.
+
+### Log Levels:
+
+| Level | Description |
+|------|------------|
+| TRACE | Most detailed |
+| DEBUG | Debug information |
+| WARN  | Warnings |
+| ERROR | Errors only |
+
+---
+
+### 🛠️ Usage:
+
+```bash
+export TF_LOG=TRACE
+terraform plan
+```
+
+### To unset:
+```bash
+unset TF_LOG
+```
+
+---
+
+## 📁 Log File Storage
+
+```bash
+export TF_LOG_PATH="/path/to/logfile.log"
+```
+
+### Key Variables:
+
+| Variable      | Purpose |
+|---------------|--------|
+| TF_LOG        | Shows logs in console |
+| TF_LOG_PATH   | Saves logs to file |
+
+---
+
+## 📌 Final Notes
+
+- `terraform refresh` is deprecated → use drift detection
+- Always run `plan` to identify drift
+- Import helps manage existing infrastructure
+- Use debugging only when troubleshooting
+
+> 🚀 **Pro Tip:** Drift + Import + Debugging are common real-world Terraform interview topics.
