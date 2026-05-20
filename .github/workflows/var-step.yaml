@@ -1,0 +1,20 @@
+name: Step Level Env Example
+
+on:
+  workflow_dispatch:
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Step level example
+        env:
+          CITY: Hyderabad
+          TRAINER: Harish
+        run: |
+          echo "City is $CITY"
+          echo "Trainer is $TRAINER"
+
+      - name: Next step
+        run: echo "City is $CITY and Trainer is $TRAINER" #CITY and TRAINER variables are unset in this steps because their limit is only the previous step level
