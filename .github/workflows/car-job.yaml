@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      COMPANY: KKFUNDA
+      COMPANY: NexusHub
       COUNTRY: INDIA
 
     steps:
