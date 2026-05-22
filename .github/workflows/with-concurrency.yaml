@@ -13,3 +13,6 @@ jobs:
       - run: echo "Running workflow"
       - run: sleep 30
       - run: echo "Finished"
+
+  #when two developers run the workflow at same time the recent one will reflect the changes and the old one will not use anymore
+  # this creates a concurrency 
