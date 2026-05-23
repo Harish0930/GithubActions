@@ -1,0 +1,16 @@
+name: Matrix Test on Two OS
+
+on:
+    workflow_dispatch:
+
+jobs:
+    matrix-test-two-os:
+        runs-on: ${{matrix.os}}
+        strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest]
+        steps:
+            - name: Print OS name
+              run: echo "running on ${{matrix.os}}"
+            - name: Print OS name2
+              run: $matrix.os
