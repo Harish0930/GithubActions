@@ -6,14 +6,14 @@ on:
 jobs:
   sample:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 2
 
     steps:
       - name: Start
         run: echo "Job started"
 
       - name: Long sleep
-        run: sleep 400
+        run: sleep 300
 
       - name: End
         run: echo "Job finished"
