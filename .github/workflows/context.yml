@@ -17,7 +17,7 @@ jobs:
             - name: Dump job context
               env: 
                 JOB_CONTEXT: ${{tojson(job)}}
-               run: echo "$JOB_CONTEXT"
+              run: echo "$JOB_CONTEXT"
 
             - name: Dump steps context
               env:
@@ -44,7 +44,7 @@ jobs:
             
             - name: Design step-1
               run: echo "--------------------------------------------------"
-              
+
             - name: Final Step!!!!!!!! :)
               run: echo ":) Thank you, this is the end of the context :)"
 
