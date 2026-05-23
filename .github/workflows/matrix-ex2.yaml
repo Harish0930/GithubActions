@@ -1,0 +1,17 @@
+name: Test Matrix example2
+
+on: 
+    workflow_dispatch:
+
+jobs:
+    test-matrix-with-nodeversions:
+        runs-on: ${{matrix.os}}
+        strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest]
+                node: [16,18]
+        steps:
+            - name: show values
+              run: |
+                echo "OS = ${{matrix.os}}"
+                echo "node version = ${{matrix.node}}"
