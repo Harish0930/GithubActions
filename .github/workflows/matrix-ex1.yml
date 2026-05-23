@@ -12,3 +12,5 @@ jobs:
         steps:
             - name: Print OS name
               run: echo "running on ${{matrix.os}}"
+            - name: Print OS name2
+              run: echo "$matrix.os"
