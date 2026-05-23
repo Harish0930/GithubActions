@@ -1,0 +1,23 @@
+name: Matrix Docker with Max-Parallel
+
+on: 
+    workflow_dispatch:
+
+jobs:
+    Docker-Matrix:
+        runs-on: ${{matrix.os}}
+        strategy:
+            max-parallel: 2
+            matrix:
+                os: [ubuntu-latest, windows-latest]
+                image: [alpine, hello-world]
+                exclude:
+                    - os: [windows-latest]
+                      image: [alpine]
+                
+        steps:
+            - name: Docker info
+              run: docker info
+            
+            - name: Run docker image
+              run: docker run ${{matrix.image}}
