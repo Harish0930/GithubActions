@@ -1,0 +1,37 @@
+name: Conditional Expression Example
+
+on: workflow_dispatch
+
+jobs:
+    conditional-job:
+        runs-on: ${{matrix.os}}
+        strategy:
+            max-parallel: 1
+            matrix:
+                os: [ubuntu-latest, windows-latest]
+        steps:
+            - name: Step1 - Always Runs
+              run: echo "This step always runs"
+
+            - name: Step 2 - Run only on ubuntu
+              if: runner.os == 'Linux'
+              run: echo "Running because the runner OS is Linux"
+
+            - name: Step 3 - Run only on main Branch
+              if: github.ref == 'refs/heads/main'
+              run: echo "This workflow is running on the main branch"
+
+            - name: Step 4 - Run only if previous steps succeed
+              if: success()
+              run: echo "Previous steps executed successfully"
+
+            - name: Step 5 - Run only if workflow fails
+              if: failure()
+              run: echo "workflow failed"
+
+            - name: Step 6 - Custom Condition
+              if: github.actor == 'Harish0930'
+              run: echo "Workflow triggered by ${{github.actor}}"
+
+            - name: Final step
+              run: echo "Workflow execution completed"
