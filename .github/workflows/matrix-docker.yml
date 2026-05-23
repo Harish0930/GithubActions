@@ -7,9 +7,11 @@ jobs:
     Docker-Matrix:
         runs-on: ${{matrix.os}}
         strategy:
+            fail-fast: false # by-default it is true
             matrix:
                 os: [ubuntu-latest, windows-latest]
                 image: [alpine, hello-world]
+                
         steps:
             - name: Docker info
               run: docker info
